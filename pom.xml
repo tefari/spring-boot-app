@@ -46,6 +46,9 @@
             </plugin>
         </plugins>
     </build>
+    <properties>
+      <start-class>com.example.myproject.Application</start-class>
+</properties>
 
 
 </project>
