@@ -14,7 +14,9 @@ import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
@@ -55,10 +57,14 @@ public class Example {
 	}
 
 	public static String fetchWebDriverResponseString(String sourceImage) {
+		 FirefoxBinary firefoxBinary = new FirefoxBinary();
+		    firefoxBinary.addCommandLineOptions("--headless");		    
+		    FirefoxOptions firefoxOptions = new FirefoxOptions();
+		    firefoxOptions.setBinary(firefoxBinary);
+		    FirefoxDriver driver = new FirefoxDriver(firefoxOptions);
 		String sourceImgUrl = "https://firebasestorage.googleapis.com/v0/b/trueorgs.appspot.com/o/test.jpg?alt=media&token=0ea99427-a248-4ff2-acd9-a2ed6984deec";
 		sourceImgUrl = sourceImage;
 		System.out.println("Web Driver started");
-		WebDriver driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.navigate().to("https://images.google.com/");
 		WebElement element = driver.findElement(By.className("S3Wjs"));
