@@ -37,7 +37,7 @@ public class Example {
 
 	@CrossOrigin(origins = "http://spring.local:8080/")
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
-	Map home(@RequestParam(value="img", required=true) String img) {
+	Map home(@RequestParam(value="img", required=false) String img) {
 
 		Map result = null;
 		// WebDriver ->get google image --> "avacado
