@@ -62,7 +62,7 @@ public class Example {
 		    FirefoxOptions firefoxOptions = new FirefoxOptions();
 		    firefoxOptions.setBinary(firefoxBinary);
 		    FirefoxDriver driver = new FirefoxDriver(firefoxOptions);
-		String sourceImgUrl = "https://firebasestorage.googleapis.com/v0/b/trueorgs.appspot.com/o/test.jpg?alt=media&token=0ea99427-a248-4ff2-acd9-a2ed6984deec";
+		String sourceImgUrl = "https://firebasestorage.googleapis.com/v0/b/trueorgs.appspot.com/o/test.jpg?alt=media";
 		sourceImgUrl = sourceImage;
 		System.out.println("Web Driver started");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
