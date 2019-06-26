@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -37,26 +38,31 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 @EnableAutoConfiguration
 public class Example {
 
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
 	Map home(@RequestParam(value = "img", required = false) String img) {
 
-		Map result = null;
-		// WebDriver ->get google image --> "avacado
-		String params = "f756b834-0ad5-477e-bdc3-25d5d8e9c6bf";
-		params = img;
-		String imgUrl = "https://firebasestorage.googleapis.com/v0/b/trueorgs.appspot.com/o/test.jpg?alt=media&token="
-				
-				+ params;
-		String gurl = "https://images.google.com/";
-		System.out.println("IMAGE URL: "+imgUrl);
-		String purl = "http://192.168.33.10/php/form.html";
-		// processRequest(purl,imgUrl);
+		Map result = new HashMap();
+		try {
+			// WebDriver ->get google image --> "avacado
+			String params = "f756b834-0ad5-477e-bdc3-25d5d8e9c6bf";
+			params = img;
+			String imgUrl = "https://firebasestorage.googleapis.com/v0/b/trueorgs.appspot.com/o/test.jpg?alt=media&token="
 
-		// ?sourceImg={https://firebasestorage.googleapis.com/v0/b/trueorgs.appspot.com/o/test.jpg?alt=media&token=0ea99427-a248-4ff2-acd9-a2ed6984deec}
+					+ params;
+			imgUrl = "https://www.medicalnewstoday.com/content/images/headlines/270/270406/avocado-dissection.jpg";
+			String gurl = "https://images.google.com/";
+			System.out.println("IMAGE URL: " + imgUrl);
+			String purl = "http://192.168.33.10/php/form.html";
+			// processRequest(purl,imgUrl);
 
-		result = Collections.singletonMap("response", fetchWebDriverResponseString(imgUrl));
+			// ?sourceImg={https://firebasestorage.googleapis.com/v0/b/trueorgs.appspot.com/o/test.jpg?alt=media&token=0ea99427-a248-4ff2-acd9-a2ed6984deec}
 
+			
+			result = Collections.singletonMap("response", fetchWebDriverResponseString(imgUrl));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 
@@ -77,8 +83,18 @@ public class Example {
 		element = driver.findElement(By.className("fKDtNb"));
 		String resp = null;
 		try {
-			resp = element.getText();
+			resp = "title: "+element.getText();
 			System.out.println("response string: " + resp);
+
+			driver.navigate().to("https://www.google.com/webhp");
+			element = driver.findElement(By.name("q"));
+			element.sendKeys(resp + " nutritional facts");
+			element.submit();
+			element = driver.findElement(By.className("i4J0ge"));
+
+			System.out.println(element.getText());
+			
+			resp+="\n body: "+element.getText();
 
 		} catch (Exception e) {
 			e.printStackTrace();
