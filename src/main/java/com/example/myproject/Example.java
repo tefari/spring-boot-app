@@ -49,7 +49,7 @@ public class Example {
 			String imgUrl = "https://firebasestorage.googleapis.com/v0/b/trueorgs.appspot.com/o/test.jpg?alt=media&token="
 
 					+ params;
-			imgUrl = "https://www.medicalnewstoday.com/content/images/headlines/270/270406/avocado-dissection.jpg";
+			//imgUrl = "https://www.medicalnewstoday.com/content/images/headlines/270/270406/avocado-dissection.jpg";
 			String gurl = "https://images.google.com/";
 			System.out.println("IMAGE URL: " + imgUrl);
 			String purl = "http://192.168.33.10/php/form.html";
