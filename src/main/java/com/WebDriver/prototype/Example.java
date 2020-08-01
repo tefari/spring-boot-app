@@ -1,4 +1,4 @@
-package com.example.myproject;
+package com.WebDriver.prototype;
 
 import java.net.MalformedURLException;
 import java.net.URL;
